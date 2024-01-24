@@ -1,0 +1,66 @@
+{% load static %}
+{% include 'navbar.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/homecss.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <title>FISH</title>
+    <style>
+        body {
+            background: rgb(168, 239, 238);
+        }
+    </style>
+</head>
+<body>
+    <div class="container my-5">
+        <div class="row">
+            <table class="table table-bordered" style="text-align:center;">
+                <tr>
+                        <th>Image</th>
+                        <th>Product Name</th>
+                        <th>Unit</th>
+                        <th>Quantity</th>
+                        <th>Amount</th>
+                        <th>Remove</th>
+                    </tr>
+                    {% for item in cart %}
+                    <tr>
+                        <td><img src="{{ item.product.prodect_Image.url }}" height="80px" alt="{{item.product.name}}"></td>
+                        <td style="padding-top: 3%;">{{ item.product.name }}</td>
+                        <td style="padding-top: 3%;">₹ {{ item.product.price }}/-</td>
+                        <td style="padding-top: 3%;">{{ item.product_qty }}</td>
+                        <td style="padding-top: 3%;" class="amt">₹ {{ item.total_cost }}/-</td>
+                        <td style="padding-top: 3%;"><a href="{% url 'remove_cart' item.id %}" onclick="return confirm('Are You Sure To Remove')"  class="btn btn-danger btn-sm"><i class="fa fa-trash"></a></i></td>
+                    </tr>
+                    {% endfor %}
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td colspan="2"><b>Total Amount</b></td>
+                        <td id="net"><b>₹ 0 /-</b></td>
+                    </tr>
+                </table>
+                <button class="btn btn-success" onclick="return confirm('Order placed Pay after delivary')">Place Order</button>
+            </div>
+        </div>
+    <footer>&copy; Copyrights #frontendforever 2023</footer>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            updateTotalAmount();
+        });
+    
+        function updateTotalAmount() {
+            const nodes = document.querySelectorAll('.amt');
+            const arr = Array.from(nodes);
+            const res = arr.reduce((acc, curr) => {
+                return acc += Number(curr.textContent.replace('₹', '').replace('/-', '').trim());
+            }, 0);
+            document.getElementById("net").innerHTML = "₹ " + res + " /-";
+        }
+    </script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+</body>
+</html>

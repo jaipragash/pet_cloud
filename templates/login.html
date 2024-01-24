@@ -1,0 +1,85 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="{% static 'css/login style.css' %}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- Animated Wave Background  -->
+    <form action="/logout" method="post">
+        <button type="submit">Logout</button>
+    </form>
+    <div class="ocean">
+        <div class="wave"></div>
+        <div class="wave"></div> <!-- Fix: Added an equal sign to class attribute -->
+    </div>
+    <!-- Log In Form Section -->
+    <section>
+        <div class="container" id="container">
+            <div class="form-container sign-up-container">
+                <form action="{% url 'login' %}" method="post" autocomplete="off">
+                    {% csrf_token %}
+                    <h1>Login</h1>
+                    <div class="social-container">
+                        <a href="https://Github.com/YasinDehfuli" target="_blank" class="social"><i class="fab fa-github"></i></a>
+                        <a href="https://Codepen.io/YasinDehfuli" target="_blank" class="social"><i class="fab fa-codepen"></i></a>
+                        <a href="mailto:Ydehfuli@gmail.com" target="_blank" class="social"><i class="fab fa-google"></i></a>
+                    </div>
+                    <label for="name">Username:</label>
+                    <input type="text" name="Username" id="name" required> <!-- Fix: Changed 'name' attribute to 'Username' to match your form processing code -->
+                    <label for="email">Email:</label>
+                    <input type="email" name="Email" id="email" required> <!-- Fix: Changed 'name' attribute to 'Email' to match your form processing code -->
+                    <label for="password1">Password:</label>
+                    <input type="password" name="Password1" id="password1" required> <!-- Fix: Changed 'name' attribute to 'Password1' to match your form processing code -->
+                    <label for="password2">Confirm Password:</label>
+                    <input type="password" name="Password2" id="password2" required> <!-- Fix: Changed 'name' attribute to 'Password2' to match your form processing code -->
+                    <button type="submit">Sign Up</button>
+                </form>
+            </div>
+            <div class="form-container sign-in-container">
+                {% csrf_token %}
+                <form action="/signin" method="post" autocomplete="off">
+                    <h1>Sign in</h1>
+                    <div class="social-container">
+                        <a href="https://Github.com/YasinDehfuli" target="_blank" class="social"><i class="fab fa-github"></i></a>
+                        <a href="https://Codepen.io/YasinDehfuli" target="_blank" class="social"><i class="fab fa-codepen"></i></a>
+                        <a href="mailto:Ydehfuli@gmail.com" target="_blank" class="social"><i class="fab fa-google"></i></a>
+                    </div>
+                    <label for="signin-name">Username:</label>
+                    <input type="text" name="name" id="signin-name" required> <!-- Fix: Changed 'name' attribute to match your form processing code -->
+                    <label for="signin-password">Password:</label>
+                    <input type="password" name="password" id="signin-password" required>
+                    <button type="submit">Sign In</button>
+                </form>
+            </div>
+            <div class="overlay-container">
+                <div class="overlay">
+                    <div class="overlay-panel overlay-left">
+                        <h1>Log in</h1>
+                        <p>Sign in here if you already have an account</p>
+                        <button class="ghost mt-5" id="signIn">Sign In</button>
+                    </div>
+                    <div class="overlay-panel overlay-right">
+                        <h1>Create Account</h1>
+                        <p>Sign up if you still don't have an account...</p>
+                        <button class="ghost" id="signUp">Sign Up</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script>
+    document.getElementById('signIn').addEventListener('click', function() {
+        document.getElementById('container').classList.remove('right-panel-active');
+    });
+
+    document.getElementById('signUp').addEventListener('click', function() {
+        document.getElementById('container').classList.add('right-panel-active');
+    });
+    </script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+.service_1_heading{
+    display: flex;   
+}
+
+
+.address_and_date{
+    display: flex;
+
+}
+.address_label{
+    margin:2% 0% 0% 4%;
+}
+
+ 
+
+.from-date_label{
+    margin: 2% 0% 0% 21%; 
+}   
+
+.to-date_label{
+    margin: 2% 0% 0% 24%; 
+}   
+
+input[type="date"] {
+    color: #ffffff; 
+    background-color: transparent;
+    border: 2px solid #999; 
+    padding: 11px;
+    margin: 8.7% 0% 0% 27%;    
+    border-radius: 15px;
+    box-shadow: 2px 2px 5px #ccc;
+    cursor:pointer;   
+    width: 2in;
+    
+  }
+
+  .to-date{
+    margin-left:6% ;
+    margin-right: 4%;
+  }
+
+ 
+  
+
+ 

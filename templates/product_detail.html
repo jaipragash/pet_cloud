@@ -1,0 +1,122 @@
+{% load static %}
+{% include 'navbar.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/homecss.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <title>FISH</title>
+    <style>
+        body {
+            background: rgb(168, 239, 238);
+        }
+    </style>
+</head>
+<body>
+    <section style="min-height: 600px;">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <h4 class="mb-3">{{product}} Details</h4>
+                    <hr style="border-color: #b8bfc2"> 
+                </div>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                      <li class="breadcrumb-item"><a href="{% url 'Home' %}">Home</a></li>
+                      <li class="breadcrumb-item"><a href="{% url 'collections' product.catagory.name %}">Pets</a></li>
+                      <li class="breadcrumb-item active" aria-current="page">{{product}}</li>
+                    </ol>
+                </nav>
+                
+                <div class="col-4">
+                    <img src="{{product.prodect_Image.url}}" class="card-img-top">
+                </div>
+                <div class="col-8 my-3">
+                    <u><strong></strong><h5 class="card-title">{{ product.name}}:-</h5><br></u></strong>
+                    <p>{{product.description}}</p>
+                    <b><h3 class="my-2">₹{{product.price}}/-</h3></b>
+                    <div class="my-3">
+                        {% if product.quantity > 0 %}
+                        <input type="hidden" value="{{product.id}}" id="pid">
+                        
+                        <p>
+                            <div class="input-group" style="width: 150px;">
+                                <button class="input-group-text bg-danger text-light" id="btnMinus"> <i class="fa fa-minus"></i></button>
+                                <input type="text" name="qty" id="txtQty" value="1" class="form-control text-center">
+                                <button class="input-group-text bg-success text-light" id="btnPlus"> <i class="fa fa-plus"></i></button>
+                            </div>
+                        </p>
+                        <button class="btn btn-primary" id="btnCart"><i class="fa fa-shopping-cart" style="padding-right: 3px;" ></i>Add to Cart</button>
+                        {% else %}
+                        <button class="btn btn-secondary"><i class="fa fa-minus" style="padding-right: 3px;"></i>out of stock</button>
+                        {% endif %}
+                        <button class="btn btn-danger"><i class="fa fa-heart"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer>&copy; Copyrights #frontendforever 2023</footer>
+    <script>
+document.addEventListener("DOMContentLoaded", function(event){
+    const btnPlus = document.getElementById("btnPlus");
+    const btnMinus = document.getElementById("btnMinus");
+    const txtQty = document.getElementById("txtQty");
+    const pid = document.getElementById("pid");
+    const btnCart = document.getElementById("btnCart");
+
+    btnPlus.addEventListener("click", function(){
+        let qty=parseInt(txtQty.value,10);
+        qty = isNaN(qty)?0:qty;
+        if(qty<10){
+            qty++;
+            txtQty.value=qty;
+        }
+    });
+
+    btnMinus.addEventListener("click", function(){
+        let qty=parseInt(txtQty.value,10);
+        qty = isNaN(qty)?0:qty;
+        if(qty>1){
+            qty--;
+            txtQty.value=qty;
+        }
+    });
+
+    btnCart.addEventListener("click", function(){
+        let qty=parseInt(txtQty.value,10);
+        qty = isNaN(qty)?0:qty;
+
+        if(qty>0){
+            let postObj = {
+                product_qty: qty,
+                pid: pid.value
+            }
+            //console.log(postObj);
+            fetch("/addtocart", {
+                method: 'POST',
+                credentials: 'same-origin',
+                headers:{
+                    'Accept': 'application/json',
+                    'X-Requested-With': 'XMLHttpRequest',
+                    'X-CSRFToken': '{{ csrf_token }}',
+                },
+                body: JSON.stringify(postObj)
+            }).then(response => {
+                return response.json();
+            }).then(data => {
+                //console.log(data);
+                alert(data['status']);
+            });
+        }else{
+            alert("please enter the quantity")
+        }
+    });
+});   
+    </script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    
+</body>
+</html>

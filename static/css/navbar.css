@@ -1,0 +1,30 @@
+#navbar {
+    position: sticky;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    padding: 0.5rem 5rem;
+    box-shadow: 10px 10px 10px #5c636a;
+    background-color: #86cdeb;
+}
+
+.navbar .navbar-brand {
+    font-size: 40px;
+    font-family: 'Lobster', sans-serif;
+    font-weight: bolder;
+    color: #000000 !important;
+}
+
+#navbarSupportedContent a {
+    color: rgba(3, 3, 3, 0.86);
+    font-weight: bolder;
+    border-bottom: 2px solid transparent;
+}
+
+#navbarSupportedContent a:hover {
+    border-bottom: 2px solid #fc4e4e;
+}
+
+#icon i{
+    padding-right: 5px;
+}

@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<!-- saved from url=(0112)http://localhost:63342/petcloud/home_page.html?_ijt=7jmsuasopjrc00at7q68bkvg4r&_ij_reload=RELOAD_ON_SAVE#prodect -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Home</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/home_page_css.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+    <style>
+        #home{
+            background: linear-gradient(rgba(0,0,0,.3),rgba(0,0,0,.4)), url('../static/img/group-portrait-adorable-puppies.jpg');
+            background-size: cover;
+            background-position: center;
+            flex-direction: column;
+!important;}
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark" id="navbar">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="{{url_for('home')}}">Pet Cloud</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="http://localhost:63342/petcloud/home_page.html?_ijt=7jmsuasopjrc00at7q68bkvg4r&amp;_ij_reload=RELOAD_ON_SAVE#"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart" viewBox="0 0 16 16">
+                            <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+                          </svg> Buy
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#prodect">Pets</a>
+                    </li>
+                     <li class="nav-item">
+                        <a class="nav-link active" href="http://localhost:63342/petcloud/home_page.html?_ijt=7jmsuasopjrc00at7q68bkvg4r&amp;_ij_reload=RELOAD_ON_SAVE#">Service</a>
+                    </li>
+                </ul>
+                <button class="btn p-2 my-lg-0 my-2"  id="loginButton"><a href="{{ url_for('signin') }}">Sign in</a></button>
+
+            </div>
+        </div>
+    </nav>
+
+<!--    home-->
+    <section id="home">
+        <h1 class="text-center">Welcome To Pet Cloud..!</h1>
+        <p>Hello Pet Lover's</p>
+        <div class="input-group m-4">
+            <input type="text" class="form-control" placeholder="Search Here...">
+
+            {% if sigin %}
+            <button class="btn signin">Search</button>
+            {% endif %}
+
+        </div>
+    </section>
+
+<!--    prodect-->
+    <section id="prodect">
+        <div class="container m-5">
+            <h1 class="text-center my-5">Pick Our Pet</h1>
+            <div class="row">
+                <div class="col-lg-4 col-md-4 col-12">
+                    <div class="card">
+                        <img src="{{ url_for('static', filename='img//ani.png') }}" class="card-img-top">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Animal</h5>
+                            <a href="{{url_for('doganimal')}}" class="btn btn-primary">Click to inspect</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 col-12">
+                    <div class="card">
+                        <img src="{{ url_for('static', filename='img//03062019-17-removebg-preview (1).png') }}" class="card-img-top">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Aquarium</h5>
+                            <a href="http://localhost:63342/petcloud/home_page.html?_ijt=7jmsuasopjrc00at7q68bkvg4r&amp;_ij_reload=RELOAD_ON_SAVE#" class="btn btn-primary">Click to inspect</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 col-12">
+                    <div class="card">
+                        <img src="{{ url_for('static', filename='img//bird-and-wing-logo-vector-template-removebg-preview.png') }}" class="card-img-top">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Bird</h5>
+                            <a href="http://localhost:63342/petcloud/home_page.html?_ijt=7jmsuasopjrc00at7q68bkvg4r&amp;_ij_reload=RELOAD_ON_SAVE#" class="btn btn-primary">Click to inspect</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+    <footer>@Copyrights #frontendforever 2023</footer>
+    <script src="./Home_files/popper.min.js.download"></script>
+    <script src="./Home_files/bootstrap.min.js.download"></script>
+
+
+<script>
+(function() {
+  var ws = new WebSocket('ws://' + window.location.host + 
+             '/jb-server-page?reloadMode=RELOAD_ON_SAVE&'+
+             'referrer=' + encodeURIComponent(window.location.pathname));
+  ws.onmessage = function (msg) {
+      if (msg.data === 'reload') {
+          window.location.reload();
+      }
+      if (msg.data.startsWith('update-css ')) {
+          var messageId = msg.data.substring(11);
+          var links = document.getElementsByTagName('link');
+          for (var i = 0; i < links.length; i++) {
+              var link = links[i];
+              if (link.rel !== 'stylesheet') continue;
+              var clonedLink = link.cloneNode(true);
+              var newHref = link.href.replace(/(&|\?)jbUpdateLinksId=\d+/, "$1jbUpdateLinksId=" + messageId);
+              if (newHref !== link.href) {
+                clonedLink.href = newHref;
+              }
+              else {
+                var indexOfQuest = newHref.indexOf('?');
+                if (indexOfQuest >= 0) {
+                  // to support ?foo#hash 
+                  clonedLink.href = newHref.substring(0, indexOfQuest + 1) + 'jbUpdateLinksId=' + messageId + '&' + 
+                                    newHref.substring(indexOfQuest + 1);
+                }
+                else {
+                  clonedLink.href += '?' + 'jbUpdateLinksId=' + messageId;
+                }
+              }
+              link.replaceWith(clonedLink);
+          }
+      }
+  };
+})();
+    </script>
+
+
+</body>
+</html>
